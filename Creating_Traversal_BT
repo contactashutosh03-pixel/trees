@@ -1,0 +1,71 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{   
+    static class Node {
+        int val;
+        Node left, right;
+        
+        Node(int val) {
+            this.val = val;
+        }
+    }
+    
+    static int idx = 0;
+    
+    public static Node buildTree(int[] preorderSequence) {
+        if (idx >= preorderSequence.length || preorderSequence[idx] == -1) {
+            idx++;
+            return null;
+        }
+        
+        Node root = new Node(preorderSequence[idx++]);
+        root.left = buildTree(preorderSequence);
+        root.right = buildTree(preorderSequence);
+        
+        return root;
+    }
+    
+    public static void preorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        
+        System.out.print(root.val + " ");
+        
+        preorder(root.left);
+        preorder(root.right);
+    }
+
+    public static void inorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left);
+        System.out.print(root.val + " ");
+        inorder(root.right);
+    }
+    
+    public static void postorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        postorder(root.left);
+        postorder(root.right);
+        System.out.print(root.val + " ");
+    }
+    
+    public static void main (String[] args) throws java.lang.Exception
+    {
+        // 1. Define a sample preorder sequence (-1 represents null)
+        int[] arr = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        
+        // 2. Build the tree
+        Node root = buildTree(arr);
+        
+        // 3. Print the preorder traversal to verify
+        preorder(root);
+    }
+}
