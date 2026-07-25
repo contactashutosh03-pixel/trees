@@ -64,16 +64,16 @@ class Codechef
         
         Queue<Node> q = new LinkedList<>();
         q.add(root);
-        q.add(null);
+        q.add(null); //used to identify when a level is completed
         
         while (!q.isEmpty()) {
             Node currNode = q.remove();
             if (currNode == null) {
-                System.out.println();
+                System.out.println(); //to change the line
                 if (q.isEmpty()) {
                     break;
                 } else {
-                    q.add(null);
+                    q.add(null); //to sustain the chain
                 }
             } else {
                 System.out.print(currNode.val + " ");
